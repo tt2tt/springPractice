@@ -9,4 +9,9 @@ public class UserController {
     public String userIndex(){
         return "index";
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 }

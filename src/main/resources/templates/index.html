@@ -6,5 +6,12 @@
 </head>
 <body>
 <h1>ユーザー一覧ページ</h1>
+<ul>
+    <li>
+        <form name="logout" th:action="@{/logout}" method="post">
+            <a href="javascript:logout.submit()">ログアウト</a>
+        </form>
+    </li>
+</ul>
 </body>
 </html>
