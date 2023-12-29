@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="jp">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
 <head>
-    <meta charset="UTF-8">
     <title>トップページ | 自己紹介アプリケーション</title>
 </head>
 <body>
-<h1>ユーザー一覧ページ</h1>
-<ul>
-    <li>
-        <form name="logout" th:action="@{/logout}" method="post">
-            <a href="javascript:logout.submit()">ログアウト</a>
-        </form>
-    </li>
-</ul>
+<div class="container">
+    <h1>ユーザー一覧ページ</h1>
+    <ul>
+        <li>
+            <form name="logout" th:action="@{/logout}" method="post">
+                <a href="javascript:logout.submit()">ログアウト</a>
+            </form>
+        </li>
+    </ul>
+</div>
 </body>
 </html>
