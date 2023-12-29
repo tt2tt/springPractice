@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    @GetMapping("/validIndex")
+    @GetMapping("/userIndex")
     public String validUsersIndex(Model model){
         model.addAttribute("validUserList", userService.findAll());
-        return ("admin/validIndex");
+        return ("admin/userIndex");
     }
+
+
 }
