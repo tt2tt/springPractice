@@ -14,4 +14,7 @@ public interface UserRepository {
 
     @Select("select * from users")
     List<User> findAll();
+
+    @Select("select * from users where status = 'invalid'")
+    List<User> findByInvalidUser();
 }

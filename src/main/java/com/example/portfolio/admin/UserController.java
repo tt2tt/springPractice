@@ -14,9 +14,13 @@ public class UserController {
     private final UserService userService;
     @GetMapping("/userIndex")
     public String validUsersIndex(Model model){
-        model.addAttribute("validUserList", userService.findAll());
+        model.addAttribute("userList", userService.findAll());
         return ("admin/userIndex");
     }
 
-
+    @GetMapping("invalidUserIndex")
+    public String invalidUsersIndex(Model model){
+        model.addAttribute("invalidUserList", userService.findByInvalidUser());
+     return ("admin/invalidUserIndex");
+    }
 }
