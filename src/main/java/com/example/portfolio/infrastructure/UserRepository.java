@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Mapper
 public interface UserRepository {
-    @Select("select * from users where name = #{name}")
+    @Select("select * from users where name = #{name} AND status ='valid'")
     Optional<User> findByLoginUser(String name);
 
     @Select("select * from users")
