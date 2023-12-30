@@ -1,10 +1,12 @@
 package com.example.portfolio.admin;
 
+import com.example.portfolio.domain.UserForm;
 import com.example.portfolio.domain.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    @GetMapping("/userIndex")
+    @GetMapping("userIndex")
     public String validUsersIndex(Model model){
         model.addAttribute("userList", userService.findAll());
         return ("admin/userIndex");
@@ -22,5 +24,15 @@ public class UserController {
     public String invalidUsersIndex(Model model){
         model.addAttribute("invalidUserList", userService.findByInvalidUser());
      return ("admin/invalidUserIndex");
+    }
+
+    @PostMapping("changeStatus")
+    public String changeStatus(UserForm form,Model model){
+        if (form.getStatus().toString().equals("valid")){
+            userService.statusChange(form.getId(), "invalid");
+        }else{
+            userService.statusChange(form.getId(), "valid");
+        }
+        return "redirect:/admin/userIndex";
     }
 }

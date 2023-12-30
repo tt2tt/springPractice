@@ -10,12 +10,22 @@
     <table class="table">
         <thead>
         <tr>
-            <th>username</th>
+            <th>ユーザー名</th>
+            <th>ステータス</th>
+            <th>ステータス変更</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${userList}">
             <th th:text="${user.name}">(name)</th>
+            <th th:text="${user.status}">(status)</th>
+            <th>
+                <form name="changeStatus" th:action="@{/admin/changeStatus}" method="post">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input type="hidden" name="status" th:value="${user.status}">
+                    <button type="submit" class="btn btn-primary">ステータス切り替え</button>
+                </form>
+            </th>
         </tr>
         </tbody>
     </table>
