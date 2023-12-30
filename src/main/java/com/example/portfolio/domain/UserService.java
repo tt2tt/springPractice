@@ -21,4 +21,6 @@ public class UserService {
     }
 
     public void statusChange(Integer id, String status) {userRepository.statusChange(id,status);}
+
+    public void delete(Integer id) {userRepository.delete(id);}
 }

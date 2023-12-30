@@ -41,4 +41,10 @@ public class UserController {
         userService.statusChange(form.getId(), "valid");
         return "redirect:/admin/invalidUserIndex";
     }
+
+    @PostMapping("delete")
+    public String delete(UserForm form){
+        userService.delete(form.getId());
+        return "redirect:/admin/invalidUserIndex";
+    }
 }
