@@ -19,4 +19,8 @@ public class UserService {
     public List<User> findByInvalidUser(){
         return userRepository.findByInvalidUser();
     }
+
+    public void statusChange(Integer id, String status) {userRepository.statusChange(id,status);}
+
+    public void delete(Integer id) {userRepository.delete(id);}
 }

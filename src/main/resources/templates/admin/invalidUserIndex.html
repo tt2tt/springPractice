@@ -10,12 +10,29 @@
     <table class="table">
         <thead>
         <tr>
-            <th>username</th>
+            <th>メールアドレス</th>
+            <th>ユーザー名</th>
+            <th>復元</th>
+            <th>完全削除</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${invalidUserList}">
             <th th:text="${user.name}">(name)</th>
+            <th th:text="${user.email}">(email)</th>
+            <th>
+                <form name="restoration" th:action="@{/admin/restoration}" method="post">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input type="hidden" name="status" th:value="${user.status}">
+                    <button type="submit" class="btn btn-primary">復元</button>
+                </form>
+            </th>
+            <th>
+                <form name="delete" th:action="@{/admin/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <button type="submit" class="btn btn-primary">完全削除</button>
+                </form>
+            </th>
         </tr>
         </tbody>
     </table>
