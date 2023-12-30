@@ -27,12 +27,18 @@ public class UserController {
     }
 
     @PostMapping("changeStatus")
-    public String changeStatus(UserForm form,Model model){
+    public String changeStatus(UserForm form){
         if (form.getStatus().toString().equals("valid")){
             userService.statusChange(form.getId(), "invalid");
         }else{
             userService.statusChange(form.getId(), "valid");
         }
         return "redirect:/admin/userIndex";
+    }
+
+    @PostMapping("restoration")
+    public String restoration(UserForm form){
+        userService.statusChange(form.getId(), "valid");
+        return "redirect:/admin/invalidUserIndex";
     }
 }
