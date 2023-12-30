@@ -2,10 +2,7 @@ package com.example.portfolio.infrastructure;
 
 import com.example.portfolio.domain.User;
 import com.example.portfolio.domain.UserForm;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +17,9 @@ public interface UserRepository {
 
     @Select("select * from users where status = 'invalid'")
     List<User> findByInvalidUser();
+
+    @Insert("insert into users (kana, name, email, password, profile_image, status, gender, age, self_introduction, goods_count, authority) values ('', #{name}, #{email}, #{password}, '', #{status}, 'man', '', '', 0, #{authority})")
+    void createAdminUser(String name, String email, String password, UserForm.Status status, UserForm.Authority authority);
 
     @Update("UPDATE users SET status = #{status} WHERE id = #{id}")
     void statusChange(Integer id, String status);

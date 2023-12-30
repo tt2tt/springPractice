@@ -20,6 +20,8 @@ public class UserService {
         return userRepository.findByInvalidUser();
     }
 
+    public void createAdminUser(String name, String email, String password, UserForm.Status status, UserForm.Authority authority) {userRepository.createAdminUser(name,email,password,status,authority);}
+
     public void statusChange(Integer id, String status) {userRepository.statusChange(id,status);}
 
     public void delete(Integer id) {userRepository.delete(id);}
