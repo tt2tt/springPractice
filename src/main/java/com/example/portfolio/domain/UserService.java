@@ -22,6 +22,8 @@ public class UserService {
 
     public void createAdminUser(String name, String email, String password, UserForm.Status status, UserForm.Authority authority) {userRepository.createAdminUser(name,email,password,status,authority);}
 
+    public void createGeneralUser(String kana, String name, String email, String password, UserForm.Status status, UserForm.Gender gender,Integer age, String selfIntroduction, UserForm.Authority authority) {userRepository.createGeneralUser(kana,name,email,password,status,gender,age,selfIntroduction,authority);}
+
     public void statusChange(Integer id, String status) {userRepository.statusChange(id,status);}
 
     public void delete(Integer id) {userRepository.delete(id);}

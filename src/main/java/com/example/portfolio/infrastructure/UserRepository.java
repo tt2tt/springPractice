@@ -18,8 +18,10 @@ public interface UserRepository {
     @Select("select * from users where status = 'invalid'")
     List<User> findByInvalidUser();
 
-    @Insert("insert into users (kana, name, email, password, profile_image, status, gender, age, self_introduction, goods_count, authority) values ('', #{name}, #{email}, #{password}, '', #{status}, 'man', '', '', 0, #{authority})")
+    @Insert("insert into users (kana, name, email, password, profile_image, status, gender, age, selfIntroduction, goodsCount, authority) values ('', #{name}, #{email}, #{password}, '', #{status}, 'man', '', '', 0, #{authority})")
     void createAdminUser(String name, String email, String password, UserForm.Status status, UserForm.Authority authority);
+    @Insert("insert into users (kana, name, email, password, profile_image, status, gender, age, selfIntroduction, goodsCount, authority) values (#{kana}, #{name}, #{email}, #{password}, '', #{status}, #{gender}, #{age}, #{selfIntroduction}, 0, #{authority})")
+    void createGeneralUser(String kana,String name, String email, String password, UserForm.Status status, UserForm.Gender gender, Integer age, String selfIntroduction, UserForm.Authority authority);
 
     @Update("UPDATE users SET status = #{status} WHERE id = #{id}")
     void statusChange(Integer id, String status);

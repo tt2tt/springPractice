@@ -31,6 +31,13 @@ public class UserController {
         return authorityRadio;
     }
 
+    private Map<String,String> genderRadio(){
+        Map<String,String> genderRadio = new LinkedHashMap<>();
+        genderRadio.put("man","男");
+        genderRadio.put("woman","女");
+        return genderRadio;
+    }
+
     @GetMapping("userIndex")
     public String validUsersIndex(Model model){
         model.addAttribute("userList", userService.findAll());
@@ -49,15 +56,22 @@ public class UserController {
         model.addAttribute("statusRadio",radioGender);
         radioGender = authorityRadio();
         model.addAttribute("authorityRadio",radioGender);
+        radioGender = genderRadio();
+        model.addAttribute("genderRadio",radioGender);
 
         form.setStatus(UserForm.Status.valueOf("valid"));
         form.setAuthority(UserForm.Authority.valueOf("admin"));
+        form.setGender(UserForm.Gender.valueOf("man"));
         return ("admin/userCreateForm");
     }
 
     @PostMapping("userCreate")
     public String userCreate(UserForm form){
-        userService.createAdminUser(form.getName(),form.getEmail(),form.getPassword(),form.getStatus(),form.getAuthority());
+        if (form.getAuthority().toString().equals("admin")){
+            userService.createAdminUser(form.getName(),form.getEmail(),form.getPassword(),form.getStatus(),form.getAuthority());
+        }else{
+            userService.createGeneralUser(form.getKana(),form.getName(),form.getEmail(),form.getPassword(),form.getStatus(),form.getGender(),form.getAge(),form.getSelfIntroduction(),form.getAuthority());
+        }
         return "redirect:/admin/userIndex";
     }
 
