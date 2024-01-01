@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -70,7 +71,8 @@ public class UserController {
         if (form.getAuthority().toString().equals("admin")){
             userService.createAdminUser(form.getName(),form.getEmail(),form.getPassword(),form.getStatus(),form.getAuthority());
         }else{
-            userService.createGeneralUser(form.getKana(),form.getName(),form.getEmail(),form.getPassword(),form.getStatus(),form.getGender(),form.getAge(),form.getSelfIntroduction(),form.getAuthority());
+            byte[] profileImage = userService.uploadFile(form.getProfileImage());
+            userService.createGeneralUser(form.getKana(),form.getName(),form.getEmail(),form.getPassword(),profileImage,form.getStatus(),form.getGender(),form.getAge(),form.getSelfIntroduction(),form.getAuthority());
         }
         return "redirect:/admin/userIndex";
     }

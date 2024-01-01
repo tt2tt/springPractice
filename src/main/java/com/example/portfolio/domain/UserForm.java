@@ -2,6 +2,7 @@ package com.example.portfolio.domain;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Text;
 
 @Data
@@ -17,6 +18,7 @@ public class UserForm {
     private Integer age;
     private String selfIntroduction;
     private Authority authority;
+    private MultipartFile profileImage;
 
     public enum Status{
         valid,invalid
