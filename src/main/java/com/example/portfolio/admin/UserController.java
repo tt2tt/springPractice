@@ -5,6 +5,8 @@ import com.example.portfolio.domain.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,12 +69,15 @@ public class UserController {
     }
 
     @PostMapping("userCreate")
-    public String userCreate(UserForm form){
+    public String userCreate(@Validated UserForm form, BindingResult bindingResult,Model model){
+        if(bindingResult.hasErrors() || form.getProfileImage().getSize() > 20000){
+            return userCreateForm(form,model);
+        }
         if (form.getAuthority().toString().equals("admin")){
             userService.createAdminUser(form.getName(),form.getEmail(),form.getPassword(),form.getStatus(),form.getAuthority());
         }else{
             byte[] profileImage = userService.uploadFile(form.getProfileImage());
-            userService.createGeneralUser(form.getKana(),form.getName(),form.getEmail(),form.getPassword(),profileImage,form.getStatus(),form.getGender(),form.getAge(),form.getSelfIntroduction(),form.getAuthority());
+            userService.createGeneralUser(form.getKana(),form.getName(),form.getEmail(),form.getPassword(),profileImage,form.getStatus(),form.getGender(),Integer.parseInt(form.getAge()),form.getSelfIntroduction(),form.getAuthority());
         }
         return "redirect:/admin/userIndex";
     }

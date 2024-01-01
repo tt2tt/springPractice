@@ -1,7 +1,11 @@
 package com.example.portfolio.domain;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Text;
 
@@ -9,13 +13,26 @@ import org.w3c.dom.Text;
 @RequiredArgsConstructor
 public class UserForm {
     private Integer id;
+    @Size(min=1,max=255)
+    @Pattern(regexp = "^[\\u3040-\\u309F]+$")
     private String kana;
+    @NotBlank
+    @Size(min=1,max=255)
     private String name;
+    @NotBlank
+    @Size(min=1,max=255)
+    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")
     private String email;
+    @NotBlank
+    @Size(min=8,max=32)
     private String password;
     private Status status;
     private Gender gender;
-    private Integer age;
+    @Size(min=1,max=3)
+    @Pattern(regexp = "[0-9]+")
+    private String age;
+//    @Size(min=1,max=1500)
+    @Length(min=1,max=1500)
     private String selfIntroduction;
     private Authority authority;
     private MultipartFile profileImage;

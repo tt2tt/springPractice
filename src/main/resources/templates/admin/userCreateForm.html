@@ -53,13 +53,14 @@
         </div>
         <div class="mt-3 userOnly hidden">
             <label for="selfIntroductionInput" class="form-label">自己紹介</label>
-            <textarea rows="3" cols="80" class="form-control" id="selfIntroductionInput" name="selfIntroduction" th:field="*{selfIntroduction}"></textarea>
+            <textarea rows="3" cols="80" class="form-control" id="selfIntroductionInput" name="selfIntroduction"
+                      th:field="*{selfIntroduction}"  th:classappend="${#fields.hasErrors('selfIntroduction')} ? is-invalid"></textarea>
             <p class="invalid-feedback" th:if="${#fields.hasErrors('selfIntroduction')}" th:errors="*{selfIntroduction}">(errors)</p>
         </div>
         <div class="mt-3 userOnly hidden">
             <label class="form-label">プロフィール画像</label>
             <input type="file" class="form-control" th:field="*{profileImage}" th:errorclass="is-invalid" accept="image/jpeg, image/png">
-            <div class="invalid-feedback" th:errors="*{profileImage}"></div>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('profileImage')}" th:errors="*{profileImage}"></div>
         </div>
         <div class="mt-3">
             <button type="submit" class="btn btn-primary">作成</button>
