@@ -2,7 +2,10 @@ package com.example.portfolio.admin;
 
 import com.example.portfolio.domain.UserForm;
 import com.example.portfolio.domain.UserService;
+import com.example.portfolio.domain.UserSettingForm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -68,6 +71,13 @@ public class UserController {
         return ("admin/userCreateForm");
     }
 
+    @GetMapping("userSettingForm")
+    public String userSetting(@AuthenticationPrincipal UserDetails user, UserSettingForm form, Model model){
+        form = userService.createUserSettingForm(user.getUsername());
+        model.addAttribute(form);
+        return ("admin/userSettingForm");
+    }
+
     @PostMapping("userCreate")
     public String userCreate(@Validated UserForm form, BindingResult bindingResult,Model model){
         if(bindingResult.hasErrors() || form.getProfileImage().getSize() > 20000){
@@ -79,6 +89,15 @@ public class UserController {
             byte[] profileImage = userService.uploadFile(form.getProfileImage());
             userService.createGeneralUser(form.getKana(),form.getName(),form.getEmail(),form.getPassword(),profileImage,form.getStatus(),form.getGender(),Integer.parseInt(form.getAge()),form.getSelfIntroduction(),form.getAuthority());
         }
+        return "redirect:/admin/userIndex";
+    }
+
+    @PostMapping("userSetting")
+    public String userSetting(@Validated UserSettingForm form, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return ("admin/userSettingForm");
+        }
+        userService.adminUserSetting(form.getId(), form.getName(),form.getEmail(),form.getPassword());
         return "redirect:/admin/userIndex";
     }
 
