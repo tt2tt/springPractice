@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ProfileImageSizeValidator.class)
 public @interface ProfileImageSize {
-    String message() default "2MB以内の画像をアップロードして下さい";
+    String message() default "2MB以内の画像をアップロードして下さい。";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
