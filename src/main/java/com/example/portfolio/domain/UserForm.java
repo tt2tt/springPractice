@@ -27,6 +27,7 @@ public class UserForm {
     private String email;
     @NotBlank
     @Size(min=8,max=32)
+    @Pattern(regexp = "[0-9a-zA-Z\\\\-\\\\_]+")
     private String password;
     private Status status;
     @com.example.portfolio.validation.Gender
