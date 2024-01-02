@@ -2,10 +2,7 @@ package com.example.portfolio.infrastructure;
 
 import com.example.portfolio.domain.User;
 import com.example.portfolio.domain.UserForm;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +17,11 @@ public interface UserRepository {
 
     @Select("select * from users where status = 'invalid'")
     List<User> findByInvalidUser();
+
+    @Insert("insert into users (kana, name, email, password, profileImage, status, gender, age, selfIntroduction, goodsCount, authority) values ('', #{name}, #{email}, #{password}, '', #{status}, 'man', '', '', 0, #{authority})")
+    void createAdminUser(String name, String email, String password, UserForm.Status status, UserForm.Authority authority);
+    @Insert("insert into users (kana, name, email, password, profileImage, status, gender, age, selfIntroduction, goodsCount, authority) values (#{kana}, #{name}, #{email}, #{password}, #{profileImage}, #{status}, #{gender}, #{age}, #{selfIntroduction}, 0, #{authority})")
+    void createGeneralUser(String kana,String name, String email, String password, byte[] profileImage, UserForm.Status status, UserForm.Gender gender, Integer age, String selfIntroduction, UserForm.Authority authority);
 
     @Update("UPDATE users SET status = #{status} WHERE id = #{id}")
     void statusChange(Integer id, String status);

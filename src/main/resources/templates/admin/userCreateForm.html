@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::main})}">
+<head>
+    <title>ユーザー作成 | 自己紹介アプリケーション</title>
+</head>
+<body>
+<div th:fragment="main" class="main container">
+    <h1 class="mt-3">ユーザー作成</h1>
+    <form action="#" th:action="@{/admin/userCreate}" method="post" th:object="${userForm}" enctype="multipart/form-data">
+        <div class="mt-3">
+            <label class="form-label">権限</label>
+            <div th:each="authority : ${authorityRadio}" class="form-check-inline">
+                <input type="radio" class="form-check-input" th:text="${authority.value}" th:value="${authority.key}" th:field="*{authority}" onchange="authorityChange()">
+            </div>
+        </div>
+        <div class="mt-3 userOnly hidden">
+            <label for="kanaInput" class="form-label">ふりがな</label>
+            <input type="text" id="kanaInput" class="form-control" th:field="*{kana}" th:classappend="${#fields.hasErrors('kana')} ? is-invalid">
+            <p class="invalid-feedback" th:if="${#fields.hasErrors('kana')}" th:errors="*{kana}">(errors)</p>
+        </div>
+        <div class="mt-3">
+            <label for="nameInput" class="form-label">名前</label>
+            <input type="text" id="nameInput" class="form-control" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? is-invalid">
+            <p class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">(errors)</p>
+        </div>
+        <div class="mt-3">
+            <label for="emailInput" class="form-label">メールアドレス</label>
+            <input type="text" id="emailInput" class="form-control" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? is-invalid">
+            <p class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">(errors)</p>
+        </div>
+        <div class="mt-3">
+            <label for="passwordInput" class="form-label">パスワード</label>
+            <input type="password" id="passwordInput" class="form-control" th:field="*{password}" th:classappend="${#fields.hasErrors('password')} ? is-invalid">
+            <p class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">(errors)</p>
+        </div>
+        <div class="mt-3">
+            <label class="form-label">ステータス</label>
+            <div th:each="status : ${statusRadio}" class="form-check-inline">
+                <input type="radio" class="form-check-input" th:text="${status.value}" th:value="${status.key}" th:field="*{status}">
+            </div>
+        </div>
+        <div class="mt-3 userOnly hidden">
+            <label class="form-label">性別</label>
+            <div th:each="gender : ${genderRadio}" class="form-check-inline">
+                <input type="radio" class="form-check-input" th:text="${gender.value}" th:value="${gender.key}" th:field="*{gender}">
+            </div>
+        </div>
+        <div class="mt-3 userOnly hidden">
+            <label for="ageInput" class="form-label">年齢</label>
+            <input type="number" id="ageInput" class="form-control" th:field="*{age}" th:classappend="${#fields.hasErrors('age')} ? is-invalid">
+            <p class="invalid-feedback" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">(errors)</p>
+        </div>
+        <div class="mt-3 userOnly hidden">
+            <label for="selfIntroductionInput" class="form-label">自己紹介</label>
+            <textarea rows="3" cols="80" class="form-control" id="selfIntroductionInput" name="selfIntroduction"
+                      th:field="*{selfIntroduction}"  th:classappend="${#fields.hasErrors('selfIntroduction')} ? is-invalid"></textarea>
+            <p class="invalid-feedback" th:if="${#fields.hasErrors('selfIntroduction')}" th:errors="*{selfIntroduction}">(errors)</p>
+        </div>
+        <div class="mt-3 userOnly hidden">
+            <label class="form-label">プロフィール画像</label>
+            <input type="file" class="form-control" th:field="*{profileImage}"  th:classappend="${#fields.hasErrors('profileImage')} ? is-invalid" accept="image/jpeg, image/png">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('profileImage')}" th:errors="*{profileImage}"></div>
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">作成</button>
+            <a href="/" th:href="@{/}" class="btn btn-secondary">キャンセル</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

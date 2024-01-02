@@ -25,6 +25,7 @@ public class SecurityConfig {
         ).logout(logout -> logout
                 .logoutSuccessUrl("/")
         ).authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/assets/**").permitAll()
                 .anyRequest().authenticated()
         );
 
