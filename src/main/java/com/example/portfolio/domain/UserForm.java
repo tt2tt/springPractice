@@ -1,5 +1,7 @@
 package com.example.portfolio.domain;
 
+import com.example.portfolio.validation.Gender;
+import com.example.portfolio.validation.ProfileImageSize;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -27,14 +29,15 @@ public class UserForm {
     @Size(min=8,max=32)
     private String password;
     private Status status;
+    @com.example.portfolio.validation.Gender
     private Gender gender;
     @Size(min=1,max=3)
     @Pattern(regexp = "[0-9]+")
     private String age;
-//    @Size(min=1,max=1500)
-    @Length(min=1,max=1500)
+    @Size(min=1,max=1500)
     private String selfIntroduction;
     private Authority authority;
+    @ProfileImageSize
     private MultipartFile profileImage;
 
     public enum Status{

@@ -59,7 +59,7 @@
         </div>
         <div class="mt-3 userOnly hidden">
             <label class="form-label">プロフィール画像</label>
-            <input type="file" class="form-control" th:field="*{profileImage}" th:errorclass="is-invalid" accept="image/jpeg, image/png">
+            <input type="file" class="form-control" th:field="*{profileImage}"  th:classappend="${#fields.hasErrors('profileImage')} ? is-invalid" accept="image/jpeg, image/png">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('profileImage')}" th:errors="*{profileImage}"></div>
         </div>
         <div class="mt-3">
