@@ -30,7 +30,7 @@ public class UserForm {
     @com.example.portfolio.validation.Gender
     private Gender gender;
     @Size(max=3,message = "3桁以下で入力して下さい。")
-    @Pattern(regexp = "^([0-9])?$",message = "半角数字を入力して下さい。")
+    @Pattern(regexp = "^([0-9]+)?$",message = "半角数字を入力して下さい。")
     private String age;
     @Size(max=1500,message = "1500文字以下で入力して下さい。")
     private String selfIntroduction;

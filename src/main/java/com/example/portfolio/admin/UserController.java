@@ -123,7 +123,13 @@ public class UserController {
             form.setGender(UserForm.Gender.valueOf("man"));
             return ("admin/userEditForm");
         }
-        userService.adminUserUpdate(form.getId(), form.getName(),form.getEmail(),form.getPassword(),form.getStatus());
+        if (form.getAuthority().toString().equals("admin")){
+            userService.adminUserUpdate(form.getId(), form.getName(),form.getEmail(),form.getPassword(),form.getStatus());
+        }else{
+            byte[] profileImage = userService.uploadFile(form.getProfileImage());
+            userService.generalUserUpdate(form.getId(),form.getKana(),form.getName(),form.getEmail(),form.getPassword(),profileImage,form.getStatus(),form.getGender(),Integer.parseInt(form.getAge()),form.getSelfIntroduction(),form.getAuthority());
+        }
+
         return "redirect:/admin/userIndex";
     }
 
