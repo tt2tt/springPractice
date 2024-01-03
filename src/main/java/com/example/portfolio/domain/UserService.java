@@ -64,6 +64,7 @@ public class UserService {
     public void adminUserUpdate(Integer id, String name, String email, String password, UserForm.Status status) {userRepository.adminUserUpdate(id,name,email,password, status);}
     public void generalUserUpdate(Integer id,String kana, String name, String email, String password, byte[] profileImage, UserForm.Status status, UserForm.Gender gender, Integer age, String selfIntroduction, UserForm.Authority authority) {userRepository.generalUserUpdate(id,kana,name,email,password,profileImage,status,gender,age,selfIntroduction,authority);}
     public void adminUserSetting(Integer id, String name, String email, String password) {userRepository.adminUserSetting(id,name,email,password);}
+    public void generalUserSetting(Integer id, String email, String password) {userRepository.generalUserSetting(id,email,password);}
     public void statusChange(Integer id, String status) {userRepository.statusChange(id,status);}
 
     public void delete(Integer id) {userRepository.delete(id);}

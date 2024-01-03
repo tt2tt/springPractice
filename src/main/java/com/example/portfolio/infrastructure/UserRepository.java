@@ -32,9 +32,10 @@ public interface UserRepository {
     void adminUserUpdate(Integer id, String name, String email, String password, UserForm.Status status);
     @Update("UPDATE users SET kana = #{kana}, name = #{name}, email = #{email}, password = #{password}, profileImage = #{profileImage}, status = #{status}, gender = #{gender}, age = #{age}, selfIntroduction = #{selfIntroduction}, authority = #{authority} WHERE id = #{id}")
     void generalUserUpdate(Integer id, String kana, String name, String email, String password, byte[] profileImage, UserForm.Status status, UserForm.Gender gender, Integer age, String selfIntroduction, UserForm.Authority authority);
-
     @Update("UPDATE users SET name = #{name}, email = #{email}, password = #{password} WHERE id = #{id}")
     void adminUserSetting(Integer id,String name, String email, String password);
+    @Update("UPDATE users SET email = #{email}, password = #{password} WHERE id = #{id}")
+    void generalUserSetting(Integer id, String email, String password);
     @Update("UPDATE users SET status = #{status} WHERE id = #{id}")
     void statusChange(Integer id, String status);
 
