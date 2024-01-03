@@ -2,10 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
       th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
 <head>
-    <title>ユーザー編集 | 自己紹介アプリケーション</title>
+    <title>ユーザー設定 | 自己紹介アプリケーション</title>
 </head>
 <body>
 <div class="container">
+    <h1>設定</h1>
     <form action="#" th:action="@{/user/userSetting}" method="post" th:object="${userSettingForm}">
         <div class="mt-3">
             <label for="emailInput" class="form-label">メールアドレス</label>
