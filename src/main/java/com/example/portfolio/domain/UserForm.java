@@ -16,12 +16,12 @@ import org.w3c.dom.Text;
 public class UserForm {
     private Integer id;
     @Size(max=255,message = "255字以内で入力して下さい。")
-    @Pattern(regexp = "^[\\u3040-\\u309F]+$",message = "ひらがなを入力して下さい。")
+    @Pattern(regexp = "^([\\u3040-\\u309F]+$)?$",message = "ひらがなを入力して下さい。")
     private String kana;
     @Size(max=255,message = "255字以内で入力して下さい。")
     private String name;
     @Size(max=255,message = "255字以内で入力して下さい。")
-    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$",message = "メールアドレスのフォーマットで入力して下さい。")
+    @Pattern(regexp = "^[\\w!#%&'/=~`\\*\\+\\?\\{\\}\\^\\$\\-\\|]+(\\.[\\w!#%&'/=~`\\*\\+\\?\\{\\}\\^\\$\\-\\|]+)*@[\\w!#%&'/=~`\\*\\+\\?\\{\\}\\^\\$\\-\\|]+(\\.[\\w!#%&'/=~`\\*\\+\\?\\{\\}\\^\\$\\-\\|]+)*$",message = "メールアドレスのフォーマットで入力して下さい。")
     private String email;
     @Size(min=8,max=32,message = "8文字以上32文字以下で入力して下さい。")
     @Pattern(regexp = "[0-9a-zA-Z\\\\-\\\\_]+",message = "半角英数字とアンダースコアとハイフンのみで入力して下さい。")
@@ -30,7 +30,7 @@ public class UserForm {
     @com.example.portfolio.validation.Gender
     private Gender gender;
     @Size(max=3,message = "3桁以下で入力して下さい。")
-    @Pattern(regexp = "[0-9]+",message = "半角数字を入力して下さい。")
+    @Pattern(regexp = "^([0-9]+)?$",message = "半角数字を入力して下さい。")
     private String age;
     @Size(max=1500,message = "1500文字以下で入力して下さい。")
     private String selfIntroduction;

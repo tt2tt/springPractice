@@ -13,12 +13,14 @@
             <th>ユーザー名</th>
             <th>ステータス</th>
             <th>ステータス変更</th>
+            <th>編集</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${userList}">
             <th th:text="${user.name}">(name)</th>
             <th th:text="${user.status}">(status)</th>
+            <th><a href="/admin/userEditForm.html" th:href="@{/admin/userEditForm/{userId}(userId=${user.id})}">編集</a></th>
             <th>
                 <form name="changeStatus" th:action="@{/admin/changeStatus}" method="post">
                     <input type="hidden" name="id" th:value="${user.id}">
