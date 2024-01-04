@@ -4,6 +4,7 @@ import com.example.portfolio.domain.CategoryForm;
 import com.example.portfolio.domain.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
+
+    @GetMapping("categoryIndex")
+    public String categoryIndex(Model model){
+        model.addAttribute("categoryForm", categoryService.findAll());
+        return "admin/categoryIndex";
+    }
     @GetMapping("categoryCreateForm")
     public String categoryCreateForm(CategoryForm form){
         return "admin/categoryCreateForm";
