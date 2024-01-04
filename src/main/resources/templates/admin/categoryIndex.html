@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
+<head>
+  <title>カテゴリー一覧 | 自己紹介アプリケーション</title>
+</head>
+<body>
+<div class="container">
+  <h1>カテゴリー一覧</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>カテゴリー名</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category : ${categoryForm}">
+      <th th:text="${category.name}">(name)</th>
+      <th><a href="/admin/categoryEditForm.html" th:href="@{/admin/categoryEditForm/{categoryId}(categoryId=${category.id})}">編集</a></th>
+      <th>
+        <form name="delete" th:action="@{/admin/categoryDelete}" method="post">
+          <input type="hidden" name="id" th:value="${category.id}">
+          <button type="submit" class="btn btn-primary">削除</button>
+        </form>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
