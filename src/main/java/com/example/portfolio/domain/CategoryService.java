@@ -11,6 +11,6 @@ import java.util.List;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
     public List<Category> findAll() {return categoryRepository.findAll();}
-
     public void categoryCreate(String name) {categoryRepository.categoryCreate(name);}
+    public void categoryDelete(Integer id) {categoryRepository.categoryDelete(id);}
 }

@@ -33,6 +33,12 @@ public class CategoryController {
             return "admin/categoryCreateForm";
         }
         categoryService.categoryCreate(form.getName());
-        return "redirect:/admin/userIndex";
+        return "redirect:/admin/categoryIndex";
+    }
+
+    @PostMapping("categoryDelete")
+    public String categoryDelete(CategoryForm form){
+        categoryService.categoryDelete(form.getId());
+        return "redirect:/admin/categoryIndex";
     }
 }

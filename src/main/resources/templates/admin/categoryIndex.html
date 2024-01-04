@@ -11,11 +11,18 @@
     <thead>
     <tr>
       <th>カテゴリー名</th>
+      <th>削除</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="category : ${categoryForm}">
       <th th:text="${category.name}">(name)</th>
+      <th>
+        <form name="delete" th:action="@{/admin/categoryDelete}" method="post">
+          <input type="hidden" name="id" th:value="${category.id}">
+          <button type="submit" class="btn btn-primary">削除</button>
+        </form>
+      </th>
     </tr>
     </tbody>
   </table>
