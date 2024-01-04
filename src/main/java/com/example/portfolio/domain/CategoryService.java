@@ -11,6 +11,8 @@ import java.util.List;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
     public List<Category> findAll() {return categoryRepository.findAll();}
+    public CategoryForm createCategoryEditForm(Integer id) {return categoryRepository.createCategoryEditForm(id);}
     public void categoryCreate(String name) {categoryRepository.categoryCreate(name);}
+    public void categoryUpdate(Integer id, String name) {categoryRepository.categoryUpdate(id,name);}
     public void categoryDelete(Integer id) {categoryRepository.categoryDelete(id);}
 }

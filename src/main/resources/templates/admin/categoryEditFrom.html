@@ -2,19 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org"
       th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
 <head>
-    <title>カテゴリー作成 | 自己紹介アプリケーション</title>
+    <title>カテゴリ編集 | 自己紹介アプリケーション</title>
 </head>
 <body>
 <div class="container">
-    <h1 class="mt-3">カテゴリー作成</h1>
-    <form action="#" th:action="@{/admin/categoryCreate}" method="post" th:object="${categoryForm}">
+    <h1 class="mt-3">カテゴリー編集</h1>
+    <form action="#" th:action="@{/admin/categoryUpdate}" method="post" th:object="${categoryForm}">
         <div class="mt-3 userOnly">
             <label for="kanaInput" class="form-label">カテゴリー</label>
             <input type="text" id="kanaInput" class="form-control" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? is-invalid">
             <p class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">(errors)</p>
         </div>
+        <input type="hidden" id="category" th:field="*{id}">
         <div class="mt-3">
-            <button type="submit" class="btn btn-primary">作成</button>
+            <button type="submit" class="btn btn-primary">更新</button>
             <a href="/" th:href="@{/admin/categoryIndex}" class="btn btn-secondary">キャンセル</a>
         </div>
     </form>
