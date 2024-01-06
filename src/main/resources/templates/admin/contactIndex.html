@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
+<head>
+    <title>カテゴリー一覧 | 自己紹介アプリケーション</title>
+</head>
+<body>
+<div class="container">
+    <h1>カテゴリー一覧</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>カテゴリー名</th>
+            <th>本文</th>
+            <th>ステータス</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contact : ${contactForm}">
+            <th th:text="${contact.category}">(category)</th>
+            <th class="limit" th:text="${contact.content}">(content)</th>
+            <th th:text="${contact.status}">(status)</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
