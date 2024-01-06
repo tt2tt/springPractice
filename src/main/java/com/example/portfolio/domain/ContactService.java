@@ -11,5 +11,6 @@ import java.util.List;
 public class ContactService {
     private final ContactRepository contactRepository;
     public List<Contact> contactIndex() {return contactRepository.contactIndex();}
+    public Contact contactShow(Integer id) {return contactRepository.contactShow(id);}
     public void contactCreate(String category,String content) {contactRepository.contactCreate(category,content);}
 }

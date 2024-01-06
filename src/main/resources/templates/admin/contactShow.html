@@ -13,15 +13,13 @@
             <th>カテゴリー名</th>
             <th>本文</th>
             <th>ステータス</th>
-            <th>詳細</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="contact : ${contactForm}">
             <th th:text="${contact.category}">(category)</th>
-            <th class="limit" th:text="${contact.content}">(content)</th>
+            <th id="newLine" th:text="${contact.content}">(content)</th>
             <th th:text="${contact.status}">(status)</th>
-            <th><a href="/admin/contactShow.html" th:href="@{/admin/contactShow/{contactId}(contactId=${contact.id})}">詳細</a></th>
         </tr>
         </tbody>
     </table>

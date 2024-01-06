@@ -11,6 +11,8 @@ import java.util.List;
 public interface ContactRepository {
     @Select("SELECT * FROM contacts")
     List<Contact> contactIndex();
+    @Select("SELECT * FROM contacts WHERE id = #{id}")
+    Contact contactShow(Integer id);
     @Insert("insert into contacts (category,content,status) values (#{category},#{content},'incomplete')")
     void contactCreate(String category, String content);
 }

@@ -1,3 +1,6 @@
 .hidden{
- display: none;
+  display: none;
+}
+#newLine{
+  white-space: pre;
 }
