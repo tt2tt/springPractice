@@ -18,11 +18,13 @@
         <thead>
         <tr>
             <th>名前</th>
+            <th>詳細</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${userList}">
             <th th:text="${user.name}">(name)</th>
+            <th><a href="/userShow.html" th:href="@{/userShow/{userId}(userId=${user.id})}">詳細</a></th>
         </tr>
         </tbody>
     </table>

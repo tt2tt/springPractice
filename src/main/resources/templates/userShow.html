@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
+<head>
+    <title>ユーザー詳細 | 自己紹介アプリケーション</title>
+</head>
+<body>
+<div class="container">
+  <h1>ユーザー詳細</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>かな</th>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>性別</th>
+            <th>自己紹介</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${user}">
+            <th th:text="${user.kana}">(kana)</th>
+            <th th:text="${user.name}">(name)</th>
+            <th th:text="${user.age}">(age)</th>
+            <th th:text="${user.gender}">(age)</th>
+            <th th:text="${user.selfIntroduction}">(selfIntroduction)</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

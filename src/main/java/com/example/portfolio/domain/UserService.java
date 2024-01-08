@@ -49,6 +49,8 @@ public class UserService {
 
     public UserSettingForm createUserSettingForm(String name) {return userRepository.createUserSettingForm(name);}
 
+    public User userShow(Integer id) {return  userRepository.userShow(id);}
+
     public UserForm createUserEditForm(Integer id) {return userRepository.createUserEditForm(id);}
 
     public UserForm createGeneralUserEditForm(String name) {return userRepository.createGeneralUserEditForm(name);}

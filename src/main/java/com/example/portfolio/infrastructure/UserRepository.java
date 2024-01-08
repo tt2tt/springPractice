@@ -21,6 +21,8 @@ public interface UserRepository {
     @Select("select * from users where name = #{name}")
     UserSettingForm createUserSettingForm(String name);
     @Select("select * from users where id = #{id}")
+    User userShow(Integer id);
+    @Select("select * from users where id = #{id}")
     UserForm createUserEditForm(Integer id);
     @Select("select * from users where name = #{name}")
     UserForm createGeneralUserEditForm(String name);
