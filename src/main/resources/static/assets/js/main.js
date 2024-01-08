@@ -24,3 +24,14 @@ function authorityChange(){
       }
   }
 }
+
+//表示文字数制限
+let limits = document.getElementsByClassName("limit");
+let len = 10;
+
+for(let limit of limits){
+  let str = limit.textContent;
+  if (str.length > len) {
+    limit.textContent = str.substring(0, len) + "…";
+  }
+}
