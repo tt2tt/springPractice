@@ -4,6 +4,7 @@ import com.example.portfolio.domain.Contact;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface ContactRepository {
     Contact contactShow(Integer id);
     @Insert("insert into contacts (category,content,status) values (#{category},#{content},'incomplete')")
     void contactCreate(String category, String content);
+    @Update("UPDATE contacts SET status = #{status} WHERE id = #{id}")
+    void contactStatusChange(Integer id, String status);
 }

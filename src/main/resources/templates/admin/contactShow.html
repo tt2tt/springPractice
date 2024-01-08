@@ -10,6 +10,29 @@
     <table class="table">
         <thead>
         <tr>
+            <th>変更後ステータス</th>
+            <th>ステータス変更</th>
+        </tr>
+        </thead>
+        <tbody>
+        <form action="#" th:action="@{/admin/contactStatusChange}" method="post" th:object="${contactForm}">
+            <th>
+                <select th:field="*{category}">
+                    <option value="incomplete">未対応</option>
+                    <option value="ongoing">対応中</option>
+                    <option value="completion">完了</option>
+                </select>
+                <input type="hidden" id="contact" th:field="*{id}">
+            </th>
+            <th>
+                <button type="submit" class="btn btn-primary">変更</button>
+            </th>
+        </form>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+        <tr>
             <th>カテゴリー名</th>
             <th>本文</th>
             <th>ステータス</th>

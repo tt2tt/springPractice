@@ -13,4 +13,5 @@ public class ContactService {
     public List<Contact> contactIndex() {return contactRepository.contactIndex();}
     public Contact contactShow(Integer id) {return contactRepository.contactShow(id);}
     public void contactCreate(String category,String content) {contactRepository.contactCreate(category,content);}
+    public void contactStatusChange(Integer id, String status) {contactRepository.contactStatusChange(id, status);}
 }
