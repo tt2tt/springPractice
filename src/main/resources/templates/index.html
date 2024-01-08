@@ -14,6 +14,18 @@
             </form>
         </li>
     </ul>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>名前</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}">
+            <th th:text="${user.name}">(name)</th>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

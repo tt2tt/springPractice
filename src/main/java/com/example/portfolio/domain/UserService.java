@@ -45,6 +45,8 @@ public class UserService {
         return userRepository.findByInvalidUser();
     }
 
+    public List<User> findGeneralUser() {return  userRepository.findGeneralUser();}
+
     public UserSettingForm createUserSettingForm(String name) {return userRepository.createUserSettingForm(name);}
 
     public UserForm createUserEditForm(Integer id) {return userRepository.createUserEditForm(id);}

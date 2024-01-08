@@ -12,13 +12,12 @@ import java.util.Optional;
 public interface UserRepository {
     @Select("select * from users where name = #{name} AND status ='valid'")
     Optional<User> findByLoginUser(String name);
-
     @Select("select * from users")
     List<User> findAll();
-
     @Select("select * from users where status = 'invalid'")
     List<User> findByInvalidUser();
-
+    @Select("select * from users where authority = 'user'")
+    List<User> findGeneralUser();
     @Select("select * from users where name = #{name}")
     UserSettingForm createUserSettingForm(String name);
     @Select("select * from users where id = #{id}")
