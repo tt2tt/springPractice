@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>ユーザー一覧ページ</h1>
+    <h1 id="test">ユーザー一覧ページ</h1>
     <ul>
         <li>
             <form name="logout" th:action="@{/logout}" method="post">
@@ -19,12 +19,25 @@
         <tr>
             <th>名前</th>
             <th>詳細</th>
+            <th>いいね数</th>
+            <th>いいね</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${userList}">
             <th th:text="${user.name}">(name)</th>
             <th><a href="/userShow.html" th:href="@{/userShow/{userId}(userId=${user.id})}">詳細</a></th>
+            <th th:id="@{goodsCount{userId}(userId=${user.id})}" th:text="${user.goodsCount}">(goodsCount)</th>
+            <th>
+                <form th:id="@{form{userId}(userId=${user.id})}" th:name="goodForm" th:action="@{/goodCreate}" method="post">
+                    <input th:id="@{name{userId}(userId=${user.id})}" type="hidden" name="name" th:value="*{goodForm.name}">
+                    <input type="hidden" name="partnerId" th:value="*{user.id}">
+                    <input type="hidden" name="goodsCount" th:value="*{user.goodsCount}">
+<!--                    <button th:id="${user.id}" onclick="goodCreate(this.id)" type="button" class="btn btn-primary">いいね</button>-->
+<!--                    <button th:id="${user.id}" type="submit" class="btn btn-primary">いいね</button>-->
+                    <button th:id="${user.id}" type="button" class="btn btn-primary good">いいね</button>
+                </form>
+            </th>
         </tr>
         </tbody>
     </table>

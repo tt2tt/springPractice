@@ -35,3 +35,31 @@ for(let limit of limits){
     limit.textContent = str.substring(0, len) + "…";
   }
 }
+
+//いいね処理
+$(".good").click(function() {
+  var token = $("meta[name='_csrf']").attr("content");
+  var header = $("meta[name='_csrf_header']").attr("content");
+  $(document).ajaxSend(function(e, xhr, options){
+    xhr.setRequestHeader(header, token);
+  });
+
+  var id = $(this).attr("id");
+  var target = "form" + id;
+  var user = $("#" + "name" + id);
+  var form = $("#" + target).serialize();
+
+  if(user.val() == ""){
+    location = "/login";
+  };
+
+  $.ajax({
+    url: "goodCreate",
+    type: "POST",
+    data: form
+  }).done(function(data){
+    var nextCount = $("#" + "goodsCount" + id).text();
+    $("#" + "goodsCount" + id).text(Number(nextCount) + 1);
+  }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+  })
+});

@@ -18,5 +18,6 @@ public class User {
     private String selfIntroduction;
     private String authority;
     private String image;
+    private String goodsCount;
 
 }
